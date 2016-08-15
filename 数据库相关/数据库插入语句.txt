@@ -1,0 +1,185 @@
+1,客户信息表
+insert into customer_info values(1,'张三','610121199304056789','安康学院',
+    'null','15769157752','陕西省安康市汉滨区',725000,'1034@qq.com');
+insert into customer_info values(2,'王五','610121199304056800','安康学院外语系',
+    'null','15769157753','陕西省安康市汉滨区',725000,'1035@qq.com');
+insert into customer_info values(3,'李四','610121199304056801','安康学院电信系',
+    '0519-3321009','15769157754','陕西省安康市汉滨区',725000,'1036@qq.com');
+insert into customer_info values(4,'赵六','610121199304056802','安康学院电信系',
+    'null','15769157755','陕西省安康市汉滨区',725000,'1037@qq.com');
+insert into customer_info values(5,'田七','610121199304056803','安康市公安局',
+    'null','15769157756','陕西省安康市汉滨区',725000,'1038@qq.com');
+2，订单（退货单表）
+insert into order_info values(101,'新订','未分配',201,1,33,'1', 
+to_date('13-05-2015', 'dd-mm-yyyy'), to_date('17-05-2015', 'dd-mm-yyyy'),null);
+insert into order_info values(102,'新订','已分配',202,2,44,'2', 
+to_date('14-06-2015', 'dd-mm-yyyy'), to_date('17-06-2015', 'dd-mm-yyyy'),null);
+insert into order_info values(103,'新订','已发货',203,3,66,'3', 
+to_date('14-06-2015', 'dd-mm-yyyy'), to_date('17-06-2015', 'dd-mm-yyyy'),null);
+insert into order_info values(104,'退订','退订中',204,1,33,'4', 
+to_date('16-05-2015', 'dd-mm-yyyy'), to_date('17-06-2015', 'dd-mm-yyyy'),'发货时间太慢');
+3，商品信息表
+insert into product_info values(201,'佳洁士','支',5.5,4.5,'宝洁中国有限公司','不可以','不可以');
+insert into product_info values(202,'红米2A增强版','个',799,788,'小米公司','可以','可以');
+insert into product_info values(203,'红米2A定制版','个',899,850,'小米公司','可以','可以');
+insert into product_info values(204,'小米移动电源5000毫安','个',49,45,'小米公司','不可以','可以');
+4，中心库房表
+insert into ctrm_info values(301,201,300,'高库存');
+insert into ctrm_info values(302,202,300,'即将缺货');
+insert into ctrm_info values(303,203,300,'即将缺货');
+insert into ctrm_info values(304,204,300,'即将缺货');
+5，任务单表
+insert into mission_info values(401,101,1,901,'汉滨区调度中心','王小二',
+to_date('13-05-2015', 'dd-mm-yyyy'),'已分配',to_date('13-05-2015', 'dd-mm-yyyy'),'新订');
+insert into mission_info values(402,102,2,902,'汉滨区调度中心','王小二',
+to_date('13-05-2015', 'dd-mm-yyyy'),'已分配',to_date('13-05-2015', 'dd-mm-yyyy'),'退订');
+6，调拨单表
+insert into transfer_info values(501,101,401,1,901,
+to_date('14-06-2015', 'dd-mm-yyyy'),'转出','已分配');
+insert into transfer_info values(502,101,402,2,902,
+to_date('14-06-2015', 'dd-mm-yyyy'),'转入','未分配');
+7，签收单
+insert into assign_info values(601,401,102,1,
+to_date('15-06-2015', 'dd-mm-yyyy'),'王小二','已付款');
+insert into assign_info values(602,402,103,2,
+to_date('17-06-2015', 'dd-mm-yyyy'),'王小二','货到付款');
+8，验货单--针对于库房人员
+insert into checklist_info values(701,to_date('17-06-2015', 'dd-mm-yyyy'),
+901,201,300,300,'热销品');
+insert into checklist_info values(702,to_date('17-06-2015', 'dd-mm-yyyy'),
+902,202,300,295,'消耗品');
+9，库房退货单
+insert into back_info values(801,901,201,300,
+to_date('17-06-2015', 'dd-mm-yyyy'),'已处理',null);
+insert into back_info values(802,902,202,300,
+to_date('17-06-2015', 'dd-mm-yyyy'),'未处理','保质期已过');
+10，库房信息表
+insert into warehouse_info values(901,'中心库房','安康','李睿智','中心');
+insert into warehouse_info values(902,'分站库房1','西安','花千骨','分站');
+insert into warehouse_info values(903,'分站库房2','商洛','落十一','分站');
+11，出入库单表
+insert into inout_info values(1001,901,
+'出库',201,20,to_date('18-06-2015', 'dd-mm-yyyy'));
+insert into inout_info values(1002,902,
+'入库',203,200,to_date('19-06-2015', 'dd-mm-yyyy'));
+insert into inout_info values(1003,903,
+'入库',204,200,to_date('19-06-2015', 'dd-mm-yyyy'));
+12，用户管理表
+insert into user_info values(1101,'zhang123','zhang123',null,'客服人员');
+insert into user_info values(1102,'602','602',null,'客户');
+insert into user_info values(1103,'603','603',null,'调度中心管理人员');
+insert into user_info values(1104,'888','888',null,'客户');
+13，缺货信息表
+insert into short_info values(1201,201,30,to_date('20-06-2015', 'dd-mm-yyyy'));
+insert into short_info values(1202,203,40,to_date('20-06-2015', 'dd-mm-yyyy'));
+insert into short_info values(1203,204,40,to_date('20-06-2015', 'dd-mm-yyyy'));
+14，购货单表
+insert into import_info values(1301,201,30,40,to_date('20-06-2015', 'dd-mm-yyyy'));
+insert into import_info values(1302,202,30,40,to_date('20-06-2015', 'dd-mm-yyyy'));
+
+
+修改语句
+
+alter table user_info modify (right varchar2(50));
+alter table import_info rename column product_no  to product_id
+alter table import_info drop column decision
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
