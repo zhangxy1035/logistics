@@ -6,3 +6,5 @@
 1、WebRoot  包含网页，js，css等  
 2、src中包含java的各种文件文件，在config的这个文件中applicationContext.xml有相关数据库的配置，网页的配置等。  
 3、数据库相关文件中存放着建表语句以及插入的相关语句
+#三、补充
+当然这个项目是一个很好的Spring和MyBatis结合的demo，大家可以在上边进行修改，实简单的增删改查。
