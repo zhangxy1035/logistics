@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<privileges>
+	<privilege id="1">
+		<name>角色管理</name>
+		<urls>
+			<url>/roleDelete.action</url>
+			<url>/roleUpdate.action</url>
+			<url>/roleUpdateForm.action</url>
+			<url>/roleAdd.action</url>
+			<url>/roleAddForm.action</url>
+			<url>/roleList.action</url>
+		</urls>
+	</privilege> 
+	<privilege id="2">
+		<name>管理员</name>
+		<urls>
+			<url>/adminList.action</url>
+			<url>/adminAddForm.action</url>
+			<url>/adminAdd.action</url>
+			<url>/adminUpdateForm.action</url>
+			<url>/adminUpdate.action</url>
+			<url>/adminDelete.action</url>
+			<url>/adminPasswordReset.action</url>
+		</urls>
+	</privilege>
+	<privilege id="3">
+		<name>资费管理</name>
+		<urls>
+			<url>/fee/fee_list.from</url>
+			<url>/fee/add.from</url>
+			<url>/fee/toAdd.from</url>
+			<url>/feeUpdateForm.action</url>
+			<url>/feeUpdate.action</url>
+			<url>/feeStart.action</url>
+			<url>/feeDelete.action</url>
+		</urls>
+	</privilege> 
+	<privilege id="4">
+		<name>账务账号</name>
+		<urls>
+			<url>/accountlist.action</url>
+			<url>/accountaddform.action</url>
+			<url>/accountadd.action</url>
+			<url>/accountupdateform.action</url>
+			<url>/accountupdate.action</url>
+			<url>/accountPause.action</url>
+			<url>/accountDelete.action</url>
+			<url>/accountDetail.action</url>
+		</urls>
+	</privilege> 
+	<privilege id="5">
+		<name>业务账号</name>
+		<urls>
+			<url>/serviceList.action</url>
+			<url>/serviceAddForm.action</url>
+			<url>/serviceAdd.action</url>
+			<url>/serviceUpdateForm.action</url>
+			<url>/serviceUpdate.action</url>
+			<url>/servicePause.action</url>
+			<url>/serviceDelete.action</url>
+			<url>/checkAccountByIdCard.action</url>
+			<url>/checkServiceIpAndOSUserName.action</url>
+		</urls>
+	</privilege> 
+	<privilege id="6">
+		<name>账单</name>
+		<urls>
+			<url>/billList.action</url>
+			<url>/billItemList.action</url>
+			<url>/billServiceDetail.action</url>
+		</urls>
+	</privilege> 
+	<privilege id="7">
+		<name>报表</name>
+		<urls>
+			<url>/report.action</url>
+		</urls>
+	</privilege> 
+	<privilege id="8">
+		<name>实习生1</name>
+		<urls>
+			<url>/serviceList.action</url>
+		</urls>
+	</privilege> 
+	<privilege id="9">
+		<name>实习生2</name>
+		<urls>
+			<url>/serviceList.action</url>
+			<url>/accountList.action</url>
+		</urls>
+	</privilege> 
+</privileges>

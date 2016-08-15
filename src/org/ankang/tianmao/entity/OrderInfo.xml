@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="org.ankang.tianmao.dao.OrderInfoMapperDao">
+
+	<select id="findAll" 
+	resultType="org.ankang.tianmao.entity.OrderInfo">
+		select * from Order_Info
+	</select>
+	
+	<select id="findPage" parameterType="org.ankang.tianmao.entity.Page" resultType="org.ankang.tianmao.entity.OrderInfo" >
+		select * 
+		FROM (select c1.*,rownum rn 
+		FROM (select * FROM Order_Info order by order_id)c1)
+		where rn&gt;#{begin} and rn&lt;#{end}
+		
+	</select>
+	
+	<select id="findRows" resultType="int" >
+		select count(*) from Order_Info
+	</select>
+
+</mapper>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="org.ankang.tianmao.dao.CustomerInfoMapperDao">
+
+	<select id="findAll" 
+	resultType="org.ankang.tianmao.entity.CustomerInfo">
+		select * from customer_info
+	</select>
+	<delete id="deleteCustomer" parameterType="int">
+		delete from customer_info where customer_id=#{id}
+	</delete>
+	
+	<insert id="saveCustomer" parameterType="org.ankang.tianmao.entity.CustomerInfo">
+		insert into Customer_info(customer_id,customer_name,identity_no,
+		job_add,tel,cellphone,Adds,post,mail)
+		values(customer_seq.nextval,#{customer_name,jdbcType=VARCHAR},#{identity_no,jdbcType=VARCHAR},
+		#{job_add,jdbcType=VARCHAR},#{tel,jdbcType=VARCHAR},#{cellphone,jdbcType=VARCHAR},
+		#{adds,jdbcType=VARCHAR},#{post,jdbcType=NUMERIC},#{mail,jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="findByCustomerName" 
+		parameterType="java.lang.String"
+		resultType="org.ankang.tianmao.entity.CustomerInfo">
+		select * from customer_info where customer_name=#{customer_name}
+	</select>
+	<select id="findByCustomerId" parameterType="int" resultType="org.ankang.tianmao.entity.CustomerInfo">
+		select * from customer_info where customer_id=#{customer_id,jdbcType=NUMERIC}
+	</select>
+	
+	<update id="updateCustomerInfo" parameterType="org.ankang.tianmao.entity.CustomerInfo">
+		update customer_info set customer_name=#{customer_name,jdbcType=VARCHAR},
+		identity_no=#{identity_no,jdbcType=VARCHAR},
+		job_add=#{job_add,jdbcType=VARCHAR},tel=#{tel,jdbcType=VARCHAR},
+		cellphone=#{cellphone,jdbcType=VARCHAR},adds=#{adds,jdbcType=VARCHAR},
+		post=#{post,jdbcType=NUMERIC},mail=#{mail,jdbcType=VARCHAR} 
+		where customer_id=#{customer_id,jdbcType=NUMERIC}
+	</update>
+	<select id="findPage" parameterType="org.ankang.tianmao.entity.Page" resultType="org.ankang.tianmao.entity.CustomerInfo" >
+		select * 
+		FROM (select c1.*,rownum rn 
+		FROM (select * FROM customer_info order by customer_id)c1)
+		where rn&gt;#{begin} and rn&lt;#{end}
+		
+	</select>
+	
+	<select id="findRows" resultType="int" >
+		select count(*) from customer_info
+	</select>
+	
+
+	<select id="findByCuId" parameterType="java.lang.Integer" resultMap="cuAndOrderResult">
+	select  o.customer_id,o.order_id,o.order_type,o.order_status,o.product_id,o.product_account,o.start_date,
+	c.customer_name,c.cellphone,c.adds
+	from order_info o left join customer_info c on(o.customer_id=c.customer_id)
+	where o.customer_id=#{customer_id}
+	</select>
+	<resultMap id="cuAndOrderResult" type="org.ankang.tianmao.entity.CustomerInfo" >
+	<id property="customer_id" column="customer_id"/>
+	<result property="customer_name" column="customer_name"/>
+	<result property="cellphone" column="cellphone"/>
+	<result property="adds" column="adds"/>
+	<collection ofType="org.ankang.tianmao.entity.OrderInfo"
+			property="orderInfos"  column="customer_id" javaType="java.util.List">
+	<id property="order_id" column="order_id"/>
+	<result property="order_type" column="order_type"/>
+	<result property="order_status" column="order_status"/>
+	<result property="product_id" column="product_id"/>
+	<result property="product_account" column="product_account"/>
+	<result property="start_date" column="start_date"/>
+	</collection>
+	</resultMap>
+	
+	 
+	 	<!-- 
+	 <select id="findByCuId" 
+		parameterType="java.lang.Integer" 
+		resultMap="cuAndOrderResult">
+			 select  o.customer_id,o.order_id,o.order_type,o.order_status,o.product_id,o.product_account,
+	c.customer_name,c.cellphone,c.adds
+	from order_info o join customer_info c on(o.customer_id=c.customer_id)
+	where o.customer_id=#{customer_id}
+	select * from customer_info where customer_id=#{customer_id}
+				
+	</select>
+	<select id="selectOrderInfo" 
+		parameterType="int" 
+		resultType="org.ankang.tianmao.entity.OrderInfo">
+		select * from order_info where customer_id=#{customer_id}
+	</select>
+	<resultMap id="cuAndOrderResult" type="org.ankang.tianmao.entity.CustomerInfo">
+		<id column="customer_id" property="customer_id" />
+		<collection ofType="org.ankang.tianmao.entity.OrderInfo"
+			property="orderInfos" javaType="java.util.ArrayList"
+			column="customer_id" select="selectOrderInfo">
+		</collection>
+	</resultMap>
+	 
+	  -->
+	 
+	 
+	 
+	
+	
+	
+
+</mapper>
